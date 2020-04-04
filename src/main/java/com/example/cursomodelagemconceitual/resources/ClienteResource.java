@@ -27,40 +27,40 @@ import com.example.cursomodelagemconceitual.services.ClienteService;
 public class ClienteResource {
 	
 	@Autowired
-	private ClienteService categoriaService;
+	private ClienteService clienteService;
 	
 	@RequestMapping(value= "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Cliente> find(@PathVariable Integer id) {
-		Cliente categoria = categoriaService.find(id);
-		return ResponseEntity.ok().body(categoria);
+		Cliente cliente = clienteService.find(id);
+		return ResponseEntity.ok().body(cliente);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> insert(@Valid @RequestBody ClienteNewDTO objDto){
-		Cliente obj = categoriaService.fromDTO(objDto);
-		obj = categoriaService.insert(obj);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+		Cliente cliente = clienteService.fromDTO(objDto);
+		cliente = clienteService.insert(cliente);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(cliente.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
 	
 	@RequestMapping(value= "/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<Void> update(@Valid @RequestBody ClienteDTO categoriaDto, @PathVariable Integer id){
-		Cliente obj = categoriaService.fromDTO(categoriaDto);
-		obj.setId(id);
-		obj = categoriaService.update(obj);
+	public ResponseEntity<Void> update(@Valid @RequestBody ClienteDTO clienteDto, @PathVariable Integer id){
+		Cliente cliente = clienteService.fromDTO(clienteDto);
+		cliente.setId(id);
+		cliente = clienteService.update(cliente);
 		return ResponseEntity.noContent().build();
 		
 	}
 	
 	@RequestMapping(value= "/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> delete(@PathVariable Integer id) {
-		categoriaService.delete(id);
+		clienteService.delete(id);
 		return ResponseEntity.noContent().build();
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<ClienteDTO>> findAll() {
-		List<Cliente> list = categoriaService.findAll();
+		List<Cliente> list = clienteService.findAll();
 		List<ClienteDTO> listDto = list.stream().map(obj -> new ClienteDTO(obj)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDto);
 	}
@@ -71,7 +71,7 @@ public class ClienteResource {
 			@RequestParam(value = "linesPerPage", defaultValue = "24")Integer linesPerPage,
 			@RequestParam(value = "orderBy", defaultValue = "nome")String orderBy,
 			@RequestParam(value = "direction", defaultValue = "ASC")String direction) {
-		Page<Cliente> list = categoriaService.findPage(page, linesPerPage, orderBy, direction);
+		Page<Cliente> list = clienteService.findPage(page, linesPerPage, orderBy, direction);
 		Page<ClienteDTO> listDto = list.map(obj -> new ClienteDTO(obj));
 		return ResponseEntity.ok().body(listDto);
 	}
