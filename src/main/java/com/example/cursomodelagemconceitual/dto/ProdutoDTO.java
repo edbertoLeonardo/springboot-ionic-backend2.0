@@ -2,11 +2,6 @@ package com.example.cursomodelagemconceitual.dto;
 
 import java.io.Serializable;
 
-import javax.validation.constraints.NotEmpty;
-
-import org.hibernate.validator.constraints.Length;
-
-import com.example.cursomodelagemconceitual.domain.Categoria;
 import com.example.cursomodelagemconceitual.domain.Produto;
 
 public class ProdutoDTO implements Serializable {
