@@ -2,6 +2,7 @@ package com.example.cursomodelagemconceitual.domain;
 
 import java.io.Serializable;
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Locale;
@@ -142,11 +143,12 @@ public class Pedido implements Serializable {
 	@Override
 	public String toString() {
 		NumberFormat numberFormat = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
+		SimpleDateFormat simpleDate = new SimpleDateFormat("dd/MM/yyy hh:mm:ss");
 		StringBuilder builder = new StringBuilder();
 		builder.append("Pedido número: ");
 		builder.append(getId());
 		builder.append(", Instante: ");
-		builder.append(getInstante());
+		builder.append(simpleDate.format(getInstante()));
 		builder.append(getCliente().getNome());
 		builder.append(", Situação do Pagamento: ");
 		builder.append(getPagamento().getEstadoPagamento().getDescricao());
