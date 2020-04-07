@@ -2,15 +2,32 @@ package com.example.cursomodelagemconceitual.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
+
 public class ClienteNewDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	@NotEmpty(message="Preencimento obrigaótio")
+	@Length(min=5, max=120, message="O tamanho de ser entre 5 e 120 caracteres")
 	private String nome;
-	private String email;
-	private String cpfOuCnpj;
-	private Integer tipoCliente;
 	
+	@NotEmpty(message="Preencimento obrigaótio")
+	@Email(message = "Email inválido")
+	private String email;
+	
+	@NotEmpty(message="Preencimento obrigaótio")
+	private String cpfOuCnpj;
+	
+	private Integer tipoCliente;
+	@NotEmpty(message="Preencimento obrigaótio")
+	private String senha;
+	
+	@NotEmpty(message="Preencimento obrigaótio")
 	private String logradouro;
+	@NotEmpty(message="Preencimento obrigaótio")
 	private String numero;
 	private String complemento;
 	private String bairro;
@@ -128,6 +145,14 @@ public class ClienteNewDTO implements Serializable {
 
 	public void setCidadeId(Integer cidadeId) {
 		this.cidadeId = cidadeId;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 
 }
