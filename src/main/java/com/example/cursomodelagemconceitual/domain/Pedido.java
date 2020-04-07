@@ -18,8 +18,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-import org.hibernate.bytecode.internal.javassist.BulkAccessor;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
